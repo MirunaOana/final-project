@@ -4,14 +4,19 @@ import 'firebase/auth';
 
 const authContext = React.createContext({
     isSignedIn: false,
-    user: null
+    user: null,
+    displayName: '',
+    emailVerified: false
 });
 
 function ACProvider({children}) {
 
     const [acValues, setAcValues] = useState({
         isSignedIn: false,
-        user: null
+        user: null,
+        displayName: '',
+        emailVerified: false,
+        uid: ''
     });
 
     useEffect(function() {
@@ -23,14 +28,20 @@ function ACProvider({children}) {
                 console.log({user});
                 setAcValues({
                     isSignedIn: true,
-                    user
+                    user,
+                    displayName: user.displayName,
+                    emailVerified: user.emailVerified,
+                    uid: user.uid
                 });
 
             } else {
 
                 setAcValues({
                     isSignedIn: false,
-                    user: null
+                    user: null,
+                    displayName: '',
+                    emailVerified: false,
+                    uid: ''
                 });
 
             }
