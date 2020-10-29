@@ -3,28 +3,9 @@ import * as firebase from 'firebase/app';
 
 export default function Homepage() {
 
-    const [homePost, setHomePost] = useState([]);
-
-    const homePostAux = [];
-
-    useEffect(function() {
-
-        firebase.firestore().collection("rehomed").get().then((querySnapshot) => {
-
-            querySnapshot.forEach((doc) => {
-
-                homePostAux.push({...doc.data(), id: doc.id});
-
-            });
-           
-            setHomePost(homePostAux);
-        });
-
-    }, []);
-
     return (
 
-        <div className="w-75 m-auto" style={{backgroundColor: '#fbeaeb'}}>
+        <div className="w-75" style={{backgroundColor: '#fbeaeb', margin: 'auto', marginTop: '130px'}}>
 
             <h2 className="bg-dark text-white p-3 text-center">Welcome to Bunny Care</h2>
 
@@ -32,45 +13,15 @@ export default function Homepage() {
 
             <h4 className="bg-dark text-white p-3 text-center">Adopt a bunny</h4>
 
-            <div className="card w-50" style={{margin: 'auto', marginTop: '50px'}}>
+            <div className="p-3">There are plenty of bunnies waiting to be adopted, you just need to create an account and look up for a bunny in the <a href="/adopt">Adopt</a> section.</div>
 
-            <div>
+            <h4 className="bg-dark text-white p-3 text-center">Rehome a bunny</h4>
 
-                <h5 className="card-title text-center bg-dark text-white p-2" onClick={() => console.log(homePost[0].name)}>{homePost.name} </h5>
+            <div className="p-3">You can rehome a bunny and as soon someone adopts it, someone capable of raising it will take care of your bunny. All you have to do is to click the <a href="/rehome">Rehome</a> section.</div>
 
-            </div>
+            <h4 className="bg-dark text-white p-3 text-center">Get in contact with us</h4>
 
-            <div className="p-3">
-
-                <img className="card-img-top w-50" src={homePost.imageUrl} alt={homePost.name}/>
-
-            </div>
-
-            <div className="card-body">
-
-                <ul className="font-weight-bold">
-
-                    <li>{`Age: ${homePost.age} years`}</li>
-                    <li>{`Breed: ${homePost.breed}`}</li>
-                    <li>{`Gender: ${homePost.gender}`}</li>
-                    <li>{`Neutred: ${homePost.neutred ? 'Yes' : 'No'}`}</li>
-
-                </ul>
-
-                <footer>
-
-                        <span>
-                            
-                            <input className="btn font-weight-bold btn-dark" type="button" value="Adopt &#10084;"/>
-
-                        </span>
-     
-                </footer>
-
-            </div>
-
-        </div>
-
+            <div className="p-3">If you have any questions you can contact us, just go to the <a href="/contact">Contact</a> section, send us a message and we will respond as soon as possible</div>
 
         </div>
 

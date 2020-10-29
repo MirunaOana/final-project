@@ -1,23 +1,37 @@
 import React, { useContext } from 'react'
 import { authContext } from './AuthContext';
+import * as firebase from 'firebase/app';
 
 export default function Posts({post}) {
 
     const {uid} = useContext(authContext);
 
+    function deletePost() {
+
+        firebase.firestore().collection("rehomed").doc(`${post.id}`).delete().then(function() {
+
+            window.location.reload('true');
+
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+    }
+
     return (
 
         <div className="card w-50" style={{margin: 'auto', marginTop: '50px', backgroundColor: '#fbeaeb'}}>
 
-            <div>
+            <div className="bg-dark"> 
+                
+                <input type="button" value="Delete Post" className="btn btn-danger float-right m-2" onClick={deletePost}/>
 
-                <h5 className="card-title text-center bg-dark text-white p-2">{post.name} </h5>
+                <h5 className="card-title text-center text-white p-2">{post.name} </h5>
 
             </div>
 
             <div className="p-3">
 
-                <img className="card-img-top w-50" src={post.imageUrl} alt={post.name}/>
+                <img className="card-img-top w-50 d-block m-auto" src={post.imageUrl} alt={post.name} style={{height: '400px'}}/>
 
             </div>
 

@@ -83,8 +83,6 @@ export default function Nav() {
 
                             <NavLink className={`nav-link ${collapsed ? 'd-inline' : 'd-none'} text-white mb-2 btn btn-dark`} exact to="/settings">Settings</NavLink>
 
-                            <NavLink className={`nav-link ${collapsed ? 'd-inline' : 'd-none'} text-white btn btn-dark`} exact to="/admin-request">Admin Request</NavLink>
-
                             <a className={`nav-link ${collapsed ? 'd-inline' : 'd-none'} text-white btn btn-dark`} href="/" onClick={handleOut}>Sign out</a>
 
                         </div>
